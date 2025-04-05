@@ -24,7 +24,7 @@ jobs:
 
       - name: Install Dependencies and Build 📦
         run: |
-          npm ci --save-exact --force
+          npm i  --force
           npm run build
 
       - name: 📂 Deploy via rsync
