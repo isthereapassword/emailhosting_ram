@@ -27,14 +27,13 @@ jobs:
           npm ci --save-exact --force
           npm run build
 
-      - name: 📂 Deploy via SFTP
-        uses: milanmk/actions-file-deployer@master
+      - name: 📂 Deploy via rsync
+        uses: burnett01/rsync-deployments@7.0.2
         with:
-          remote-protocol: sftp
-          remote-host: ${{ secrets.FTP_SERVER }}
-          remote-user: ${{ secrets.FTP_USER }}
-          remote-password: ${{ secrets.FTP_PASS }}
-          ssh-private-key: ${{secrets.SSH_PRIVATE_KEY}}
-          remote-path: home/ramchandra/public_html/react/
-          local-path: dist/
-          sync: full
+          switches: -avzr --delete
+          path: dist/
+          remote_path: ${{ secrets.DEPLOY_PATH }}
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          legacy_allow_rsa_hostkeys: "true"

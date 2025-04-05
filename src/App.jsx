@@ -9,10 +9,10 @@ import Contact from "./pages/Contact";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/react/">
       <Header />
       <main>
-        <Routes>
+        <Routes >
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/posts" element={<Posts />} />
