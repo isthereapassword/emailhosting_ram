@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PostCard from "../components/PostCard";
 
-// Import Owl Carousel and its styles
-// import "owl.carousel/dist/assets/owl.carousel.css";
-// import "owl.carousel/dist/assets/owl.theme.default.css";
-// import OwlCarousel from "react-owl-carousel";
+
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -25,26 +22,7 @@ const Home = () => {
   return (
     <div className="container">
 
-      {/* === Owl Carousel Slider Section === */}
-      {/* <OwlCarousel
-        className="owl-theme"
-        loop
-        margin={10}
-        nav
-        autoplay
-        autoplayTimeout={3000}
-        dots={false}
-      >
-        <div className="item">
-          <img src="/images/slider1.jpg" alt="Slider 1" className="img-fluid rounded" />
-        </div>
-        <div className="item">
-          <img src="/images/slider2.jpg" alt="Slider 2" className="img-fluid rounded" />
-        </div>
-        <div className="item">
-          <img src="/images/slider3.jpg" alt="Slider 3" className="img-fluid rounded" />
-        </div>
-      </OwlCarousel> */}
+
 
       {/* === Main Content Section === */}
       <h1 className="mt-4">Welcome to Email Hosting</h1>

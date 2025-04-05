@@ -1,0 +1,40 @@
+name: 🚀 Deploy React application on push
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy website
+    runs-on: ubuntu-latest
+    steps:
+     
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Dependencies and Build 📦
+        run: |
+          npm ci --save-exact --force
+          npm run build
+
+      - name: 📂 Deploy via SFTP
+        uses: milanmk/actions-file-deployer@master
+        with:
+          remote-protocol: sftp
+          remote-host: ${{ secrets.FTP_SERVER }}
+          remote-user: ${{ secrets.FTP_USER }}
+          remote-password: ${{ secrets.FTP_PASS }}
+          ssh-private-key: ${{secrets.SSH_PRIVATE_KEY}}
+          remote-path: home/ramchandra/public_html/react/
+          local-path: dist/
+          sync: full
