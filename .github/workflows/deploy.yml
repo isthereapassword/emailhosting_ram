@@ -38,3 +38,11 @@ jobs:
           remote_port: ${{ secrets.DEPLOY_PORT }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
           legacy_allow_rsa_hostkeys: "true"
+
+          
+      - name: Debug SSH connection
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh -p 6789 -o StrictHostKeyChecking=no -v ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} "ls -la"
